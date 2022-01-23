@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 4.1.3 (Python 3.9.7 on darwin)" generated="20220123 20:36:03.403" rpa="false" schemaversion="2">
+<suite id="s1" name="Api Tests" source="/Users/renukac/Desktop/Bling_API/api_tests.robot">
+<test id="s1-t1" name="POST User registration should be successful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>email=eve.holt@reqres.in</arg>
+<arg>password=pistol</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220123 20:36:03.618" level="INFO">&amp;{data} = { email=eve.holt@reqres.in | password=pistol }</msg>
+<status status="PASS" starttime="20220123 20:36:03.618" endtime="20220123 20:36:03.618"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${registration_URL}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220123 20:36:03.845" level="INFO">POST Request : url=https://reqres.in/api/register 
+ path_url=/api/register 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '53', 'Content-Type': 'application/json'} 
+ body=b'{"email": "eve.holt@reqres.in", "password": "pistol"}' 
+ </msg>
+<msg timestamp="20220123 20:36:03.845" level="INFO">POST Response : url=https://reqres.in/api/register 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:03 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '36', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"24-4iP0za1geN2he+ohu8F0FhCjLks"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=NEXkzjSjV4OatPUjlxVwywVA2zgBHUjIzo%2F7jiwbQCr8Wiqs6wAVCEgSrO%2FqsIeFqhZunj%2F0OB4seRQ09EJ8jhXGWXRczBHLTX8qmZessYsNx8HhN5sW%2FanFWYg%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2377fffd8672e8-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"id":4,"token":"QpwL5tke4Pnpja7X4"} 
+ </msg>
+<msg timestamp="20220123 20:36:03.845" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:03.618" endtime="20220123 20:36:03.845"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:03.617" endtime="20220123 20:36:03.845"/>
+</test>
+<test id="s1-t2" name="POST User registration should be unsuccessful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>email=eve.holt@reqres.in</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220123 20:36:03.846" level="INFO">&amp;{data} = { email=eve.holt@reqres.in }</msg>
+<status status="PASS" starttime="20220123 20:36:03.846" endtime="20220123 20:36:03.846"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${registration_URL}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220123 20:36:04.067" level="INFO">POST Request : url=https://reqres.in/api/register 
+ path_url=/api/register 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '31', 'Content-Type': 'application/json'} 
+ body=b'{"email": "eve.holt@reqres.in"}' 
+ </msg>
+<msg timestamp="20220123 20:36:04.068" level="INFO">POST Response : url=https://reqres.in/api/register 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1c-NmpazMScs9tOqR7eDEesn+pqC9Q"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=62kQLFOw2IkQ4mNY7Gy2WCr3SyMvV9l7KiZtcdpfjLteJUwgFUgUjs0rLo%2BdqZtMI%2B14a5WIL4JSmDzkZVAnY3LwAGivS3NRmam9Wk%2FQPOQyrK41t8kM4o9aIbU%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2378012cde71a2-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"error":"Missing password"} 
+ </msg>
+<msg timestamp="20220123 20:36:04.068" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:03.846" endtime="20220123 20:36:04.068"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:03.846" endtime="20220123 20:36:04.068"/>
+</test>
+<test id="s1-t3" name="POST User login should be successful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>email=eve.holt@reqres.in</arg>
+<arg>password=cityslicka</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220123 20:36:04.070" level="INFO">&amp;{data} = { email=eve.holt@reqres.in | password=cityslicka }</msg>
+<status status="PASS" starttime="20220123 20:36:04.070" endtime="20220123 20:36:04.070"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${login_URL}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220123 20:36:04.287" level="INFO">POST Request : url=https://reqres.in/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '57', 'Content-Type': 'application/json'} 
+ body=b'{"email": "eve.holt@reqres.in", "password": "cityslicka"}' 
+ </msg>
+<msg timestamp="20220123 20:36:04.288" level="INFO">POST Response : url=https://reqres.in/api/login 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '29', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1d-lGCrvD6B7Qzk11+2C98+nGhhuec"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=YjnNPm64EPcNIreB8r4LhEPrbAJju2qy1oathBYUQ5mQjqtzHvBThT%2F2%2BFBgFcuGsz9P9mz0Rc%2FKJ2myrDUpAmv%2BtLtM0abQeBD2suzRuQBVJ1%2FLBGmUW2qC6k8%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d237802892c7545-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"token":"QpwL5tke4Pnpja7X4"} 
+ </msg>
+<msg timestamp="20220123 20:36:04.288" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:04.071" endtime="20220123 20:36:04.288"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:04.069" endtime="20220123 20:36:04.288"/>
+</test>
+<test id="s1-t4" name="POST User login should be unsuccessful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>email=eve.holt@reqres.in</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220123 20:36:04.290" level="INFO">&amp;{data} = { email=eve.holt@reqres.in }</msg>
+<status status="PASS" starttime="20220123 20:36:04.290" endtime="20220123 20:36:04.290"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${login_URL}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=400</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220123 20:36:04.500" level="INFO">POST Request : url=https://reqres.in/api/login 
+ path_url=/api/login 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '31', 'Content-Type': 'application/json'} 
+ body=b'{"email": "eve.holt@reqres.in"}' 
+ </msg>
+<msg timestamp="20220123 20:36:04.500" level="INFO">POST Response : url=https://reqres.in/api/login 
+ status=400, reason=Bad Request 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1c-NmpazMScs9tOqR7eDEesn+pqC9Q"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=3VApqfJ2YTsN%2FLR%2BvE1n7aBj%2B3zAgPFjysEvyPgw9gaiB3kwVWTG4FJ8bzYzuuRvwAIuZkgkek4F9mcGfaDbytwZwvwxZ5s6VvXsONTrSxskMZQThpb3WfgdjeM%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2378040b4c718c-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"error":"Missing password"} 
+ </msg>
+<msg timestamp="20220123 20:36:04.501" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:04.290" endtime="20220123 20:36:04.501"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:04.289" endtime="20220123 20:36:04.501"/>
+</test>
+<test id="s1-t5" name="GET All the users on given page should be listed">
+<kw name="Set Variable" library="BuiltIn">
+<var>${page}</var>
+<arg>2</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<msg timestamp="20220123 20:36:04.504" level="INFO">${page} = 2</msg>
+<status status="PASS" starttime="20220123 20:36:04.503" endtime="20220123 20:36:04.504"/>
+</kw>
+<kw name="GET" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${users_URL}</arg>
+<arg>params=page=${page}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a GET request.</doc>
+<msg timestamp="20220123 20:36:04.692" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+ path_url=/api/users?page=2 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20220123 20:36:04.692" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '6636', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=ZL8fApCyrMiWbJgT6rTPTcZtoB70LyAo0OQowWHWDSNhUUM7UImojVr4wmtv0O1l4d%2BtiM3P0iqfcpbVIU1YeOCjPBvVteFBkP5cTo%2B5T8u2VTlYAhElQfin7JY%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6d2378055bbe7531-LHR', 'Content-Encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
+ </msg>
+<msg timestamp="20220123 20:36:04.692" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:04.504" endtime="20220123 20:36:04.692"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:04.502" endtime="20220123 20:36:04.692"/>
+</test>
+<test id="s1-t6" name="PUT User creation should be successful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>name=morpheus</arg>
+<arg>job=leader</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220123 20:36:04.694" level="INFO">&amp;{data} = { name=morpheus | job=leader }</msg>
+<status status="PASS" starttime="20220123 20:36:04.694" endtime="20220123 20:36:04.694"/>
+</kw>
+<kw name="PUT" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${users_URL}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a PUT request.</doc>
+<msg timestamp="20220123 20:36:04.960" level="INFO">PUT Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '37', 'Content-Type': 'application/json'} 
+ body=b'{"name": "morpheus", "job": "leader"}' 
+ </msg>
+<msg timestamp="20220123 20:36:04.960" level="INFO">PUT Response : url=https://reqres.in/api/users 
+ status=200, reason=OK 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:05 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"49-NJoiMpqxvIqFDrrnNeGO28i/9Ww"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=JYloOHdaUBhktCnuNymS2mG0j7%2FgJCwNkD8EQwD13c1KmCNIQ8t1A6Zo%2BErQ2UZ5%2FDNiOcq3KV6iFOa4ZLRkTwR2Prbx8TgIguYUSbnl6RE811l%2BS6WwOgw14TU%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6d2378067c8a6a06-MAD', 'Content-Encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"name":"morpheus","job":"leader","updatedAt":"2022-01-23T19:36:04.989Z"} 
+ </msg>
+<msg timestamp="20220123 20:36:04.961" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:04.695" endtime="20220123 20:36:04.961"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:04.693" endtime="20220123 20:36:04.961"/>
+</test>
+<test id="s1-t7" name="DELETE User deletion should be unsuccessful">
+<kw name="DELETE" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${users_URL}/2</arg>
+<arg>expected_status=204</arg>
+<doc>Sends a DELETE request.</doc>
+<msg timestamp="20220123 20:36:05.239" level="INFO">DELETE Request : url=https://reqres.in/api/users/2 
+ path_url=/api/users/2 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20220123 20:36:05.239" level="INFO">DELETE Response : url=https://reqres.in/api/users/2 
+ status=204, reason=No Content 
+ headers={'Date': 'Sun, 23 Jan 2022 19:36:05 GMT', 'Content-Length': '0', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=P2Vm%2BHwNZWfb%2FeZx9OxuzjQesH%2F6dpc%2FuVf7iusTHpnmpGfB6kVvbsxeBZ4bi9%2FZ1BxgyTUZ3sWmGDfppRZAokCfOnngm1227y3ecKlnAl01%2Fq%2B9%2FR4I6v7Ay7c%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2378085dc76a08-MAD', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body=None 
+ </msg>
+<msg timestamp="20220123 20:36:05.240" level="INFO">${response} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20220123 20:36:04.963" endtime="20220123 20:36:05.240"/>
+</kw>
+<status status="PASS" starttime="20220123 20:36:04.962" endtime="20220123 20:36:05.240"/>
+</test>
+<status status="PASS" starttime="20220123 20:36:03.404" endtime="20220123 20:36:05.242"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="7" fail="0" skip="0" id="s1" name="Api Tests">Api Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
