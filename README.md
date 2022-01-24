@@ -1,5 +1,6 @@
 ## SUT (system or subject under test)
 https://reqres.in/
+All the testcases are in api_tests.robot
 
 ## Execution process
 1. Install python 3.9 from https://www.python.org/downloads/
