@@ -1,14 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 4.1.3 (Python 3.9.7 on darwin)" generated="20220123 20:36:03.403" rpa="false" schemaversion="2">
-<suite id="s1" name="Api Tests" source="/Users/renukac/Desktop/Bling_API/api_tests.robot">
-<test id="s1-t1" name="POST User registration should be successful">
+<robot generator="Robot 4.1.3 (Python 3.9.7 on darwin)" generated="20220124 10:37:06.230" rpa="false" schemaversion="2">
+<suite id="s1" name="Api Tests" source="/Users/renukac/PycharmProjects/reqres_api/api_tests.robot">
+<test id="s1-t1" name="CREATE User creation should be successful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>name=morpheus</arg>
+<arg>job=leader</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220124 10:37:06.330" level="INFO">&amp;{data} = { name=morpheus | job=leader }</msg>
+<status status="PASS" starttime="20220124 10:37:06.329" endtime="20220124 10:37:06.330"/>
+</kw>
+<kw name="POST" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${users_URL}</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=201</arg>
+<doc>Sends a POST request.</doc>
+<msg timestamp="20220124 10:37:06.566" level="INFO">POST Request : url=https://reqres.in/api/users 
+ path_url=/api/users 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '37', 'Content-Type': 'application/json'} 
+ body=b'{"name": "morpheus", "job": "leader"}' 
+ </msg>
+<msg timestamp="20220124 10:37:06.566" level="INFO">POST Response : url=https://reqres.in/api/users 
+ status=201, reason=Created 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:06 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '84', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"54-9Z8RvwzxSIqs40YIu5+qPqlBncU"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=LcTZc4rz3LOwqUDCMXwQOMvEnIzKzewWtpfkmGa8JbZs%2BCiejseT4tQnW9SxMHC3NHLEjHDblc5Sq9JMC9mx7C7wFrv%2B7uZ0yWH24xK8S5XEWq7UlSXMv0ad6ms%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2847ffba73193a-BCN', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"name":"morpheus","job":"leader","id":"953","createdAt":"2022-01-24T09:37:06.609Z"} 
+ </msg>
+<msg timestamp="20220124 10:37:06.566" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:06.330" endtime="20220124 10:37:06.566"/>
+</kw>
+<status status="PASS" starttime="20220124 10:37:06.329" endtime="20220124 10:37:06.566"/>
+</test>
+<test id="s1-t2" name="UPDATE User update should be successful">
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{data}</var>
+<arg>name=morpheus</arg>
+<arg>job=leader</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20220124 10:37:06.567" level="INFO">&amp;{data} = { name=morpheus | job=leader }</msg>
+<status status="PASS" starttime="20220124 10:37:06.567" endtime="20220124 10:37:06.567"/>
+</kw>
+<kw name="PUT" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${users_URL}/2</arg>
+<arg>json=${data}</arg>
+<arg>expected_status=200</arg>
+<doc>Sends a PUT request.</doc>
+<msg timestamp="20220124 10:37:06.777" level="INFO">PUT Request : url=https://reqres.in/api/users/2 
+ path_url=/api/users/2 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '37', 'Content-Type': 'application/json'} 
+ body=b'{"name": "morpheus", "job": "leader"}' 
+ </msg>
+<msg timestamp="20220124 10:37:06.777" level="INFO">PUT Response : url=https://reqres.in/api/users/2 
+ status=200, reason=OK 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:06 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"49-YVJdRWdj+Af8uFtrD8o6S9yovro"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=VC%2FWBybx2acFfEyNr%2B1Y3GhXPyuNw%2Bbzx%2B%2FvI5GDRo1hrI70aqjCer3PvLKr5RIVl0H3uMs1%2FrDeBltuR6d1NK65urProJEiod1FvTd2J11cSy17YueNrOx830Y%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6d284800ed41614f-BCN', 'Content-Encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body={"name":"morpheus","job":"leader","updatedAt":"2022-01-24T09:37:06.820Z"} 
+ </msg>
+<msg timestamp="20220124 10:37:06.777" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:06.568" endtime="20220124 10:37:06.777"/>
+</kw>
+<status status="PASS" starttime="20220124 10:37:06.567" endtime="20220124 10:37:06.778"/>
+</test>
+<test id="s1-t3" name="DELETE User deletion should be unsuccessful">
+<kw name="DELETE" library="RequestsLibrary">
+<var>${response}</var>
+<arg>${users_URL}/2</arg>
+<arg>expected_status=204</arg>
+<doc>Sends a DELETE request.</doc>
+<msg timestamp="20220124 10:37:06.958" level="INFO">DELETE Request : url=https://reqres.in/api/users/2 
+ path_url=/api/users/2 
+ headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20220124 10:37:06.958" level="INFO">DELETE Response : url=https://reqres.in/api/users/2 
+ status=204, reason=No Content 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:07 GMT', 'Content-Length': '0', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=rdj5FFzaWQlEWY394IwK%2FUvSGKCstKL%2FcycJYysjbX6GXbUfayGgAmtesRs92I8tgCYkOtvhffwf8QVJgKl5t0e%2Fwzz1AIycLROZFE%2BVTRydrrMLt5bn1EjHN1E%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2848024cb411b3-BCN', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ body=None 
+ </msg>
+<msg timestamp="20220124 10:37:06.959" level="INFO">${response} = &lt;Response [204]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:06.778" endtime="20220124 10:37:06.959"/>
+</kw>
+<status status="PASS" starttime="20220124 10:37:06.778" endtime="20220124 10:37:06.959"/>
+</test>
+<test id="s1-t4" name="POST User registration should be successful">
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{data}</var>
 <arg>email=eve.holt@reqres.in</arg>
 <arg>password=pistol</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220123 20:36:03.618" level="INFO">&amp;{data} = { email=eve.holt@reqres.in | password=pistol }</msg>
-<status status="PASS" starttime="20220123 20:36:03.618" endtime="20220123 20:36:03.618"/>
+<msg timestamp="20220124 10:37:06.962" level="INFO">&amp;{data} = { email=eve.holt@reqres.in | password=pistol }</msg>
+<status status="PASS" starttime="20220124 10:37:06.961" endtime="20220124 10:37:06.962"/>
 </kw>
 <kw name="POST" library="RequestsLibrary">
 <var>${response}</var>
@@ -16,28 +97,28 @@
 <arg>json=${data}</arg>
 <arg>expected_status=200</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20220123 20:36:03.845" level="INFO">POST Request : url=https://reqres.in/api/register 
+<msg timestamp="20220124 10:37:07.224" level="INFO">POST Request : url=https://reqres.in/api/register 
  path_url=/api/register 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '53', 'Content-Type': 'application/json'} 
  body=b'{"email": "eve.holt@reqres.in", "password": "pistol"}' 
  </msg>
-<msg timestamp="20220123 20:36:03.845" level="INFO">POST Response : url=https://reqres.in/api/register 
+<msg timestamp="20220124 10:37:07.225" level="INFO">POST Response : url=https://reqres.in/api/register 
  status=200, reason=OK 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:03 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '36', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"24-4iP0za1geN2he+ohu8F0FhCjLks"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=NEXkzjSjV4OatPUjlxVwywVA2zgBHUjIzo%2F7jiwbQCr8Wiqs6wAVCEgSrO%2FqsIeFqhZunj%2F0OB4seRQ09EJ8jhXGWXRczBHLTX8qmZessYsNx8HhN5sW%2FanFWYg%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2377fffd8672e8-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:07 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '36', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"24-4iP0za1geN2he+ohu8F0FhCjLks"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=v3GsMvVqcB9WhM3VFtYImZW92%2BU6QPP57jNnw%2Bw6vtYtqyd%2BxPvzUrZc4ShmuuyScZbr2GIswbxrmU1Wf1y9%2Fpx%2Bep%2BpwlCJS%2FJ4KVLT1rQEBnEaHFAxQm0t91I%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d284803ee6c6131-BCN', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
  body={"id":4,"token":"QpwL5tke4Pnpja7X4"} 
  </msg>
-<msg timestamp="20220123 20:36:03.845" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:03.618" endtime="20220123 20:36:03.845"/>
+<msg timestamp="20220124 10:37:07.225" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:06.962" endtime="20220124 10:37:07.225"/>
 </kw>
-<status status="PASS" starttime="20220123 20:36:03.617" endtime="20220123 20:36:03.845"/>
+<status status="PASS" starttime="20220124 10:37:06.960" endtime="20220124 10:37:07.226"/>
 </test>
-<test id="s1-t2" name="POST User registration should be unsuccessful">
+<test id="s1-t5" name="POST User registration should be unsuccessful">
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{data}</var>
 <arg>email=eve.holt@reqres.in</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220123 20:36:03.846" level="INFO">&amp;{data} = { email=eve.holt@reqres.in }</msg>
-<status status="PASS" starttime="20220123 20:36:03.846" endtime="20220123 20:36:03.846"/>
+<msg timestamp="20220124 10:37:07.228" level="INFO">&amp;{data} = { email=eve.holt@reqres.in }</msg>
+<status status="PASS" starttime="20220124 10:37:07.227" endtime="20220124 10:37:07.228"/>
 </kw>
 <kw name="POST" library="RequestsLibrary">
 <var>${response}</var>
@@ -45,29 +126,29 @@
 <arg>json=${data}</arg>
 <arg>expected_status=400</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20220123 20:36:04.067" level="INFO">POST Request : url=https://reqres.in/api/register 
+<msg timestamp="20220124 10:37:07.532" level="INFO">POST Request : url=https://reqres.in/api/register 
  path_url=/api/register 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '31', 'Content-Type': 'application/json'} 
  body=b'{"email": "eve.holt@reqres.in"}' 
  </msg>
-<msg timestamp="20220123 20:36:04.068" level="INFO">POST Response : url=https://reqres.in/api/register 
+<msg timestamp="20220124 10:37:07.532" level="INFO">POST Response : url=https://reqres.in/api/register 
  status=400, reason=Bad Request 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1c-NmpazMScs9tOqR7eDEesn+pqC9Q"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=62kQLFOw2IkQ4mNY7Gy2WCr3SyMvV9l7KiZtcdpfjLteJUwgFUgUjs0rLo%2BdqZtMI%2B14a5WIL4JSmDzkZVAnY3LwAGivS3NRmam9Wk%2FQPOQyrK41t8kM4o9aIbU%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2378012cde71a2-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:07 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1c-NmpazMScs9tOqR7eDEesn+pqC9Q"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=eI%2F%2F2w80UCRxbgmNf15kMpcIeC5Zjtu2t%2BGV1Lck4GFRo6Z8%2BBRYftnL7p9Dv7met%2FIYtxkJ5hOar3QXAZfqjhgX2i3mL5qWOaT9pstsZ55G70aUn6j31PgCe60%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2848055e0a11b3-BCN', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
  body={"error":"Missing password"} 
  </msg>
-<msg timestamp="20220123 20:36:04.068" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:03.846" endtime="20220123 20:36:04.068"/>
+<msg timestamp="20220124 10:37:07.532" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:07.228" endtime="20220124 10:37:07.532"/>
 </kw>
-<status status="PASS" starttime="20220123 20:36:03.846" endtime="20220123 20:36:04.068"/>
+<status status="PASS" starttime="20220124 10:37:07.226" endtime="20220124 10:37:07.533"/>
 </test>
-<test id="s1-t3" name="POST User login should be successful">
+<test id="s1-t6" name="POST User login should be successful">
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{data}</var>
 <arg>email=eve.holt@reqres.in</arg>
 <arg>password=cityslicka</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220123 20:36:04.070" level="INFO">&amp;{data} = { email=eve.holt@reqres.in | password=cityslicka }</msg>
-<status status="PASS" starttime="20220123 20:36:04.070" endtime="20220123 20:36:04.070"/>
+<msg timestamp="20220124 10:37:07.535" level="INFO">&amp;{data} = { email=eve.holt@reqres.in | password=cityslicka }</msg>
+<status status="PASS" starttime="20220124 10:37:07.534" endtime="20220124 10:37:07.535"/>
 </kw>
 <kw name="POST" library="RequestsLibrary">
 <var>${response}</var>
@@ -75,28 +156,28 @@
 <arg>json=${data}</arg>
 <arg>expected_status=200</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20220123 20:36:04.287" level="INFO">POST Request : url=https://reqres.in/api/login 
+<msg timestamp="20220124 10:37:07.751" level="INFO">POST Request : url=https://reqres.in/api/login 
  path_url=/api/login 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '57', 'Content-Type': 'application/json'} 
  body=b'{"email": "eve.holt@reqres.in", "password": "cityslicka"}' 
  </msg>
-<msg timestamp="20220123 20:36:04.288" level="INFO">POST Response : url=https://reqres.in/api/login 
+<msg timestamp="20220124 10:37:07.751" level="INFO">POST Response : url=https://reqres.in/api/login 
  status=200, reason=OK 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '29', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1d-lGCrvD6B7Qzk11+2C98+nGhhuec"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=YjnNPm64EPcNIreB8r4LhEPrbAJju2qy1oathBYUQ5mQjqtzHvBThT%2F2%2BFBgFcuGsz9P9mz0Rc%2FKJ2myrDUpAmv%2BtLtM0abQeBD2suzRuQBVJ1%2FLBGmUW2qC6k8%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d237802892c7545-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:07 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '29', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1d-lGCrvD6B7Qzk11+2C98+nGhhuec"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=KN9V9bYQu68q%2F6iLQwOV8fs4ln9DLKoW8ljQZkdKLQSW1kN2g6tWSlo7PrGBCpRcpQu%2BkOr8fLuHi6Wed3j5%2BxfS7Woz8lUkwhQ4jHkqW15pgFyyKCj8PuJPTfA%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2848074d2c193a-BCN', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
  body={"token":"QpwL5tke4Pnpja7X4"} 
  </msg>
-<msg timestamp="20220123 20:36:04.288" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:04.071" endtime="20220123 20:36:04.288"/>
+<msg timestamp="20220124 10:37:07.752" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:07.536" endtime="20220124 10:37:07.752"/>
 </kw>
-<status status="PASS" starttime="20220123 20:36:04.069" endtime="20220123 20:36:04.288"/>
+<status status="PASS" starttime="20220124 10:37:07.533" endtime="20220124 10:37:07.752"/>
 </test>
-<test id="s1-t4" name="POST User login should be unsuccessful">
+<test id="s1-t7" name="POST User login should be unsuccessful">
 <kw name="Create Dictionary" library="BuiltIn">
 <var>&amp;{data}</var>
 <arg>email=eve.holt@reqres.in</arg>
 <doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220123 20:36:04.290" level="INFO">&amp;{data} = { email=eve.holt@reqres.in }</msg>
-<status status="PASS" starttime="20220123 20:36:04.290" endtime="20220123 20:36:04.290"/>
+<msg timestamp="20220124 10:37:07.754" level="INFO">&amp;{data} = { email=eve.holt@reqres.in }</msg>
+<status status="PASS" starttime="20220124 10:37:07.754" endtime="20220124 10:37:07.754"/>
 </kw>
 <kw name="POST" library="RequestsLibrary">
 <var>${response}</var>
@@ -104,28 +185,28 @@
 <arg>json=${data}</arg>
 <arg>expected_status=400</arg>
 <doc>Sends a POST request.</doc>
-<msg timestamp="20220123 20:36:04.500" level="INFO">POST Request : url=https://reqres.in/api/login 
+<msg timestamp="20220124 10:37:07.980" level="INFO">POST Request : url=https://reqres.in/api/login 
  path_url=/api/login 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '31', 'Content-Type': 'application/json'} 
  body=b'{"email": "eve.holt@reqres.in"}' 
  </msg>
-<msg timestamp="20220123 20:36:04.500" level="INFO">POST Response : url=https://reqres.in/api/login 
+<msg timestamp="20220124 10:37:07.981" level="INFO">POST Response : url=https://reqres.in/api/login 
  status=400, reason=Bad Request 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1c-NmpazMScs9tOqR7eDEesn+pqC9Q"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=3VApqfJ2YTsN%2FLR%2BvE1n7aBj%2B3zAgPFjysEvyPgw9gaiB3kwVWTG4FJ8bzYzuuRvwAIuZkgkek4F9mcGfaDbytwZwvwxZ5s6VvXsONTrSxskMZQThpb3WfgdjeM%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2378040b4c718c-LHR', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:08 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '28', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"1c-NmpazMScs9tOqR7eDEesn+pqC9Q"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=4wf7p4C%2BvyBlmyGsdOa%2BQNzZvNPoq0vLdyrRoKWavGRMfoo%2FAfF%2FUFYtDr8b%2FWK2QvvglmtdiYb6NFKqw4tJruK6A%2FBpBgYIseTW%2BAzK5JqGaPbQBXN32CxPlQo%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d284808a8c711b3-BCN', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
  body={"error":"Missing password"} 
  </msg>
-<msg timestamp="20220123 20:36:04.501" level="INFO">${response} = &lt;Response [400]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:04.290" endtime="20220123 20:36:04.501"/>
+<msg timestamp="20220124 10:37:07.981" level="INFO">${response} = &lt;Response [400]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:07.755" endtime="20220124 10:37:07.981"/>
 </kw>
-<status status="PASS" starttime="20220123 20:36:04.289" endtime="20220123 20:36:04.501"/>
+<status status="PASS" starttime="20220124 10:37:07.753" endtime="20220124 10:37:07.982"/>
 </test>
-<test id="s1-t5" name="GET All the users on given page should be listed">
+<test id="s1-t8" name="GET All the users on given page should be listed">
 <kw name="Set Variable" library="BuiltIn">
 <var>${page}</var>
 <arg>2</arg>
 <doc>Returns the given values which can then be assigned to a variables.</doc>
-<msg timestamp="20220123 20:36:04.504" level="INFO">${page} = 2</msg>
-<status status="PASS" starttime="20220123 20:36:04.503" endtime="20220123 20:36:04.504"/>
+<msg timestamp="20220124 10:37:07.984" level="INFO">${page} = 2</msg>
+<status status="PASS" starttime="20220124 10:37:07.983" endtime="20220124 10:37:07.984"/>
 </kw>
 <kw name="GET" library="RequestsLibrary">
 <var>${response}</var>
@@ -133,82 +214,31 @@
 <arg>params=page=${page}</arg>
 <arg>expected_status=200</arg>
 <doc>Sends a GET request.</doc>
-<msg timestamp="20220123 20:36:04.692" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
+<msg timestamp="20220124 10:37:08.222" level="INFO">GET Request : url=https://reqres.in/api/users?page=2 
  path_url=/api/users?page=2 
  headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive'} 
  body=None 
  </msg>
-<msg timestamp="20220123 20:36:04.692" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
+<msg timestamp="20220124 10:37:08.222" level="INFO">GET Response : url=https://reqres.in/api/users?page=2 
  status=200, reason=OK 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:04 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'HIT', 'Age': '6636', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=ZL8fApCyrMiWbJgT6rTPTcZtoB70LyAo0OQowWHWDSNhUUM7UImojVr4wmtv0O1l4d%2BtiM3P0iqfcpbVIU1YeOCjPBvVteFBkP5cTo%2B5T8u2VTlYAhElQfin7JY%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6d2378055bbe7531-LHR', 'Content-Encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
+ headers={'Date': 'Mon, 24 Jan 2022 09:37:08 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"406-ut0vzoCuidvyMf8arZpMpJ6ZRDw"', 'via': '1.1 vegur', 'Cache-Control': 'max-age=14400', 'CF-Cache-Status': 'REVALIDATED', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=Z0rpvQB6Bk3PKVItnMfVY9yAE7bqiKoiWT%2FCmWRbUKkESVhm1ew7RITB70b%2FPgJUTAKKssgrkCMfvM0xoBitDHFgDWnE0bL1PWPoCW8DNkuN6L69dD8hDTKztQE%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6d28480a0f5111bf-BCN', 'Content-Encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
  body={"page":2,"per_page":6,"total":12,"total_pages":2,"data":[{"id":7,"email":"michael.lawson@reqres.in","first_name":"Michael","last_name":"Lawson","avatar":"https://reqres.in/img/faces/7-image.jpg"},{"id":8,"email":"lindsay.ferguson@reqres.in","first_name":"Lindsay","last_name":"Ferguson","avatar":"https://reqres.in/img/faces/8-image.jpg"},{"id":9,"email":"tobias.funke@reqres.in","first_name":"Tobias","last_name":"Funke","avatar":"https://reqres.in/img/faces/9-image.jpg"},{"id":10,"email":"byron.fields@reqres.in","first_name":"Byron","last_name":"Fields","avatar":"https://reqres.in/img/faces/10-image.jpg"},{"id":11,"email":"george.edwards@reqres.in","first_name":"George","last_name":"Edwards","avatar":"https://reqres.in/img/faces/11-image.jpg"},{"id":12,"email":"rachel.howell@reqres.in","first_name":"Rachel","last_name":"Howell","avatar":"https://reqres.in/img/faces/12-image.jpg"}],"support":{"url":"https://reqres.in/#support-heading","text":"To keep ReqRes free, contributions towards server costs are appreciated!"}} 
  </msg>
-<msg timestamp="20220123 20:36:04.692" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:04.504" endtime="20220123 20:36:04.692"/>
+<msg timestamp="20220124 10:37:08.222" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20220124 10:37:07.985" endtime="20220124 10:37:08.222"/>
 </kw>
-<status status="PASS" starttime="20220123 20:36:04.502" endtime="20220123 20:36:04.692"/>
+<status status="PASS" starttime="20220124 10:37:07.982" endtime="20220124 10:37:08.223"/>
 </test>
-<test id="s1-t6" name="PUT User creation should be successful">
-<kw name="Create Dictionary" library="BuiltIn">
-<var>&amp;{data}</var>
-<arg>name=morpheus</arg>
-<arg>job=leader</arg>
-<doc>Creates and returns a dictionary based on the given ``items``.</doc>
-<msg timestamp="20220123 20:36:04.694" level="INFO">&amp;{data} = { name=morpheus | job=leader }</msg>
-<status status="PASS" starttime="20220123 20:36:04.694" endtime="20220123 20:36:04.694"/>
-</kw>
-<kw name="PUT" library="RequestsLibrary">
-<var>${response}</var>
-<arg>${users_URL}</arg>
-<arg>json=${data}</arg>
-<arg>expected_status=200</arg>
-<doc>Sends a PUT request.</doc>
-<msg timestamp="20220123 20:36:04.960" level="INFO">PUT Request : url=https://reqres.in/api/users 
- path_url=/api/users 
- headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '37', 'Content-Type': 'application/json'} 
- body=b'{"name": "morpheus", "job": "leader"}' 
- </msg>
-<msg timestamp="20220123 20:36:04.960" level="INFO">PUT Response : url=https://reqres.in/api/users 
- status=200, reason=OK 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:05 GMT', 'Content-Type': 'application/json; charset=utf-8', 'Transfer-Encoding': 'chunked', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"49-NJoiMpqxvIqFDrrnNeGO28i/9Ww"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=JYloOHdaUBhktCnuNymS2mG0j7%2FgJCwNkD8EQwD13c1KmCNIQ8t1A6Zo%2BErQ2UZ5%2FDNiOcq3KV6iFOa4ZLRkTwR2Prbx8TgIguYUSbnl6RE811l%2BS6WwOgw14TU%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Vary': 'Accept-Encoding', 'Server': 'cloudflare', 'CF-RAY': '6d2378067c8a6a06-MAD', 'Content-Encoding': 'br', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
- body={"name":"morpheus","job":"leader","updatedAt":"2022-01-23T19:36:04.989Z"} 
- </msg>
-<msg timestamp="20220123 20:36:04.961" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:04.695" endtime="20220123 20:36:04.961"/>
-</kw>
-<status status="PASS" starttime="20220123 20:36:04.693" endtime="20220123 20:36:04.961"/>
-</test>
-<test id="s1-t7" name="DELETE User deletion should be unsuccessful">
-<kw name="DELETE" library="RequestsLibrary">
-<var>${response}</var>
-<arg>${users_URL}/2</arg>
-<arg>expected_status=204</arg>
-<doc>Sends a DELETE request.</doc>
-<msg timestamp="20220123 20:36:05.239" level="INFO">DELETE Request : url=https://reqres.in/api/users/2 
- path_url=/api/users/2 
- headers={'User-Agent': 'python-requests/2.26.0', 'Accept-Encoding': 'gzip, deflate, br', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
- body=None 
- </msg>
-<msg timestamp="20220123 20:36:05.239" level="INFO">DELETE Response : url=https://reqres.in/api/users/2 
- status=204, reason=No Content 
- headers={'Date': 'Sun, 23 Jan 2022 19:36:05 GMT', 'Content-Length': '0', 'Connection': 'keep-alive', 'x-powered-by': 'Express', 'access-control-allow-origin': '*', 'etag': 'W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"', 'via': '1.1 vegur', 'CF-Cache-Status': 'DYNAMIC', 'Expect-CT': 'max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"', 'Report-To': '{"endpoints":[{"url":"https:\\/\\/a.nel.cloudflare.com\\/report\\/v3?s=P2Vm%2BHwNZWfb%2FeZx9OxuzjQesH%2F6dpc%2FuVf7iusTHpnmpGfB6kVvbsxeBZ4bi9%2FZ1BxgyTUZ3sWmGDfppRZAokCfOnngm1227y3ecKlnAl01%2Fq%2B9%2FR4I6v7Ay7c%3D"}],"group":"cf-nel","max_age":604800}', 'NEL': '{"success_fraction":0,"report_to":"cf-nel","max_age":604800}', 'Server': 'cloudflare', 'CF-RAY': '6d2378085dc76a08-MAD', 'alt-svc': 'h3=":443"; ma=86400, h3-29=":443"; ma=86400'} 
- body=None 
- </msg>
-<msg timestamp="20220123 20:36:05.240" level="INFO">${response} = &lt;Response [204]&gt;</msg>
-<status status="PASS" starttime="20220123 20:36:04.963" endtime="20220123 20:36:05.240"/>
-</kw>
-<status status="PASS" starttime="20220123 20:36:04.962" endtime="20220123 20:36:05.240"/>
-</test>
-<status status="PASS" starttime="20220123 20:36:03.404" endtime="20220123 20:36:05.242"/>
+<status status="PASS" starttime="20220124 10:37:06.232" endtime="20220124 10:37:08.224"/>
 </suite>
 <statistics>
 <total>
-<stat pass="7" fail="0" skip="0">All Tests</stat>
+<stat pass="8" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="7" fail="0" skip="0" id="s1" name="Api Tests">Api Tests</stat>
+<stat pass="8" fail="0" skip="0" id="s1" name="Api Tests">Api Tests</stat>
 </suite>
 </statistics>
 <errors>
